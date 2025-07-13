@@ -1,0 +1,126 @@
+import org.junit.Test;
+import static org.junit.Assert.*;
+import java.util.*;
+
+import DSA.Graphs.*;
+import DSA.Graphs.GCA.*;
+import DSA.Sorting.*;
+
+/**
+ * Unit tests for sorting algorithms and graph structures.
+ * 
+ * Tests include:
+ * - QuickSort, InsertSort, SelectSort correctness
+ * - MatrixGraph edge operations
+ * - AdjacencyVect functionality
+ * - Graph coloring solution validity
+ */
+public class GTUJunitTest {
+
+    /**
+     * Tests that GTUQuickSort correctly sorts an Integer array.
+     */
+    @Test
+    public void testQuickSort() {
+        GTUQuickSort sorter = new GTUQuickSort();
+        Integer[] arr = {3, 1, 4, 2};
+        sorter.sort(arr, Comparator.naturalOrder());
+
+        Integer[] expected = {1, 2, 3, 4};
+        assertArrayEquals(expected, arr);
+    }
+
+    /**
+     * Tests that GTUInsertSort correctly sorts an Integer array.
+     */
+    @Test
+    public void testInsertSort() {
+        GTUInsertSort sorter = new GTUInsertSort();
+        Integer[] arr = {5, 2, 8};
+        sorter.sort(arr, Comparator.naturalOrder());
+
+        assertArrayEquals(new Integer[]{2, 5, 8}, arr);
+    }
+
+    /**
+     * Tests that GTUSelectSort correctly sorts an Integer array.
+     * 
+     * NOTE: Fixed the test to instantiate GTUSelectSort (was previously
+     * mistakenly using GTUQuickSort).
+     */
+    @Test
+    public void testSelectSort() {
+        GTUSelectSort sorter = new GTUSelectSort(); // corrected instantiation
+        Integer[] arr = {3, 1, 4, 2};
+        sorter.sort(arr, Comparator.naturalOrder());
+
+        Integer[] expected = {1, 2, 3, 4};
+        assertArrayEquals(expected, arr);
+    }
+
+    /**
+     * Tests setting and getting edges in MatrixGraph.
+     * Verifies that edges are undirected.
+     */
+    @Test
+    public void testMatrixGraphSetAndGet() {
+        MatrixGraph g = new MatrixGraph();
+        g.reset(4);
+        g.setEdge(0, 2);
+
+        assertTrue(g.getEdge(0, 2));
+        assertTrue(g.getEdge(2, 0)); // undirected edge check
+        assertFalse(g.getEdge(1, 3));
+    }
+
+    /**
+     * Tests basic add and contains operations on AdjacencyVect.
+     */
+    @Test
+    public void testAdjacencyVect() {
+        AdjacencyVect vect = new AdjacencyVect(5);
+        vect.add(2);
+        vect.add(4);
+
+        assertTrue(vect.contains(2));
+        assertFalse(vect.contains(1));
+        assertEquals(2, vect.size());
+    }
+
+    /**
+     * Tests basic graph coloring functionality on a simple graph.
+     * 
+     * Ensures that the color assignment matches expected number of colors.
+     */
+    @Test
+    public void testGraphColoring() {
+        MatrixGraph g = new MatrixGraph();
+        g.reset(3);
+        g.setEdge(0, 1);
+        g.setEdge(1, 2);
+
+        GTUQuickSort sorter = new GTUQuickSort();
+        GCASolution sol = GreedyGCA.solve(g, sorter);
+
+        assertEquals(3, sol.vNum);            // graph size
+        assertEquals(2, sol.colorNum().intValue()); // expected minimal colors
+    }
+
+    /**
+     * Tests color set and retrieval functionality in GCASolution.
+     */
+    @Test
+    public void testGCASolutionSetAndGet() {
+        GCASolution sol = new GCASolution(5);
+
+        int color0 = sol.addColor();
+        int color1 = sol.addColor();
+
+        sol.setColor(0, color0);
+        sol.setColor(1, color1);
+
+        assertEquals(2, sol.colorNum().intValue());
+        assertTrue(sol.getColorVertices(color0).contains(0));
+        assertTrue(sol.getColorVertices(color1).contains(1));
+    }
+}

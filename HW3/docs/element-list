@@ -1,0 +1,9 @@
+HWSystem
+HWSystem.Device
+HWSystem.Device.Display
+HWSystem.Device.MotorDriver
+HWSystem.Device.Sensor
+HWSystem.Device.WirellesIO
+HWSystem.Port
+HWSystem.Protocol
+Main
