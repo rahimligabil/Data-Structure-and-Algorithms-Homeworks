@@ -17,7 +17,7 @@ The project includes full implementations and in-depth practice on the following
 - Queues
 - HashSet, HashMap (custom implementations)
 - Priority Queue (Min/Max Heap)
-- Skip List (if implemented)
+- Skip List 
 
 ###  Tree and Graph Structures
 - Binary Search Tree (BST)
@@ -34,14 +34,14 @@ The project includes full implementations and in-depth practice on the following
 - Insertion Sort
 - Selection Sort
 - Bubble Sort
-- Timsort (if applicable)
+- Timsort 
 
 ###  Algorithm Analysis
 - Time and Space Complexity Analysis (Big-O notation)
 - Recursive Algorithms
 - Divide & Conquer techniques
 - Greedy Algorithms
-- Dynamic Programming (if included)
+- Dynamic Programming
 
 ---
 
